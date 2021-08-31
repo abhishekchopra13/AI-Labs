@@ -62,8 +62,8 @@ def right(self2: Matrix):
         self.mat[self.blank] = BLANK_KEY
         return self
 
-    def printMat(self):
-        print(self.mat)
+def printMat(self: Matrix):
+    print(self.mat)
 
 
 mat = Matrix()
