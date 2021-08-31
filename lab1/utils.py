@@ -53,6 +53,9 @@ class Matrix:
             self.blank = (self.blank[0], self.blank[1] - 1)
             self.mat[self.blank] = BLANK_KEY
 
+    def printMat(self):
+        print(self.mat)
+
 
 mat = Matrix()
 mat.up()
