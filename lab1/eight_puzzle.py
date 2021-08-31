@@ -1,7 +1,7 @@
 import sys
 import numpy as np
 from utils import ROW_SIZE, COL_SIZE, BLANK_KEY, Matrix, printMat, string_to_mat, mat_to_string
-from search	import a_star
+from search	import a_star, best_first_search
 import time
 
 def readInput(input_path):
@@ -39,19 +39,28 @@ if __name__ == '__main__':
 		print('Run: eight_puzzle.py <path_to_initial_state> <path_to_final_state>')
 		exit(0)
 	
-	# Ask for Hueristic type
+	print('Enter Search Algorithm type:')
+	print('1. Best First Search')
+	print('2. A * ')
+	algo_type = int(input())
 	print('Enter Hueristic type:')
 	print('1. h1(n) = number of tiles displaced from their destined position.')
 	print('2. h2(n) = sum of Manhattan distance of each tile from the goal')
-	print('3. h(n) = g(n) Best First Search')
+	print('3. h(n) = 0 Zero heuristic')
 	hueristic_type = int(input())
 
 	start_state = Matrix(np.array(readInput(sys.argv[1])))
 	final_state = Matrix(np.array(readInput(sys.argv[2])))
 
-	start_time = time.time()
-	closed_list, parent_list, optimal_path_cost, string_to_matrix_mapping = a_star(start_state, final_state, hueristic_type)
-	end_time = time.time()
+	if algo_type == 1:
+		start_time = time.time()
+		closed_list, parent_list, optimal_path_cost, string_to_matrix_mapping = best_first_search(start_state, final_state, hueristic_type)
+		end_time = time.time()
+
+	else:
+		start_time = time.time()
+		closed_list, parent_list, optimal_path_cost, string_to_matrix_mapping = a_star(start_state, final_state, hueristic_type)
+		end_time = time.time()
 
 	if optimal_path_cost != -1:
 		print("Voila ! Found a solution to the puzzle ! Gretings from MnMnM !")
@@ -64,7 +73,7 @@ if __name__ == '__main__':
 		print(f"Optimal Path Cost: {optimal_path_cost}")
 		print(f"Time taken: {end_time - start_time}")
 		print("")
-		printOptimalPath(parent_list, mat_to_string(final_state.mat), mat_to_string(start_state.mat))
+		# printOptimalPath(parent_list, mat_to_string(final_state.mat), mat_to_string(start_state.mat))
 	else:
 		print("Boo ! Unable to find a solution !")
 		print("Start State:")
