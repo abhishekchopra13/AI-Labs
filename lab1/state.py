@@ -1,5 +1,7 @@
-class state:
-    def __init__(self, puzzle_configuration, g_n, h_n):
+from utils import Matrix
+
+class Puzzle_State:
+    def __init__(self, puzzle_configuration: Matrix, g_n, h_n):
         self.puzzle_configuration = puzzle_configuration
         self.g_n = g_n
         self.h_n = h_n
