@@ -26,7 +26,7 @@ class Matrix:
             print("No tile can be moved up.")
         else:
             self.mat[self.blank] = self.mat[self.blank[0] + 1, self.blank[1]]
-            self.blank[0] = self.blank[0] + 1
+            self.blank = (self.blank[0] + 1, self.blank[1])
             self.mat[self.blank] = BLANK_KEY
 
     def down(self):
@@ -34,7 +34,7 @@ class Matrix:
             print("No tile can be moved down.")
         else:
             self.mat[self.blank] = self.mat[self.blank[0] - 1, self.blank[1]]
-            self.blank[0] = self.blank[0] - 1
+            self.blank = (self.blank[0] - 1, self.blank[1])
             self.mat[self.blank] = BLANK_KEY
 
     def left(self):
@@ -42,7 +42,7 @@ class Matrix:
             print("No tile can be moved left.")
         else:
             self.mat[self.blank] = self.mat[self.blank[0], self.blank[1] + 1]
-            self.blank[1] = self.blank[1] + 1
+            self.blank = (self.blank[0], self.blank[1] + 1)
             self.mat[self.blank] = BLANK_KEY
 
     def right(self):
@@ -50,5 +50,12 @@ class Matrix:
             print("No tile can be moved left.")
         else:
             self.mat[self.blank] = self.mat[self.blank[0], self.blank[1] - 1]
-            self.blank[1] = self.blank[1] - 1
+            self.blank = (self.blank[0], self.blank[1] - 1)
             self.mat[self.blank] = BLANK_KEY
+
+
+mat = Matrix()
+mat.up()
+mat.right()
+mat.down()
+print(mat.mat)
