@@ -319,3 +319,21 @@ Goal State:
 | A* | Zero heuristic | 28 | 25.4986 | 181273 | Yes |
 | A* | Tiles Displaced | 28 | 11.3247 | 108984 | Yes |
 | A* | Manhattan | 28 | 2.91534 | 27227 | Yes |
+
+
+## Instructions to run the code
+
+1. Install dependencies using `pip install -r requirements.txt` after creating a `conda` environment.
+
+2. Enter the initial state and goal state in `/input/start_state.txt` and `/input/end_state.txt`.
+
+3. Run:
+```
+python eight_puzzle.py input/start_state.txt input/end_state.txt 
+```
+
+
+______________________
+Thanking You!
+
+MnMnM
