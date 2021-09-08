@@ -82,7 +82,7 @@ def string_to_mat(str):
             i = i + 1
             flag = 1
         else:
-            if flag is 1:
+            if flag == 1:
                 mat[(i-1)//ROW_SIZE, (i-1)%COL_SIZE] = int(str[i])
             else:
                 mat[i//ROW_SIZE, i%COL_SIZE] = int(str[i])
