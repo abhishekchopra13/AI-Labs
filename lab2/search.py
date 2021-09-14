@@ -81,7 +81,7 @@ def get_temperature(max_temperature, iteration, choice):
     elif choice == 3:
         if iteration == 1:
             return max_temperature
-        return max_temperature/math.log(iteration)
+        return max_temperature / math.log(iteration)
 
 
 def simulated_annealing(initial_matrix: Matrix, goal, heuristic_used, max_temperature, cooling_function):
@@ -102,7 +102,7 @@ def simulated_annealing(initial_matrix: Matrix, goal, heuristic_used, max_temper
         puzzle_configuration_string = ''.join(str(val) for row in puzzle_state.puzzle_configuration.mat for val in row)
         string_to_matrix_mapping[puzzle_configuration_string] = puzzle_state.puzzle_configuration.mat
         current_cost = puzzle_state.h_n
-        if (puzzle_state.puzzle_configuration.mat == goal).all():
+        if (puzzle_state.puzzle_configuration.mat == goal.mat).all():
             optimal_path_cost = puzzle_state.g_n
             break
         node_h_n = puzzle_state.h_n

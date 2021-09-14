@@ -62,7 +62,6 @@ if __name__ == '__main__':
 		cooling_function = int(input("1. Exponential decay\n2. Linear decay\n3. Logarithmic decay\n"))
 		start_time = time.time()
 		parent_list, optimal_path_cost, string_to_matrix_mapping, number_states_explored = simulated_annealing(start_state, final_state, hueristic_type, max_temperature, cooling_function)
-		# closed_list, parent_list, optimal_path_cost, string_to_matrix_mapping = a_star(start_state, final_state, hueristic_type)
 		end_time = time.time()
 
 	if optimal_path_cost != -1:
@@ -75,7 +74,7 @@ if __name__ == '__main__':
 			print(f"Total number of states explored: {number_states_explored}")
 		else:
 			print(f"Total number of states explored: {len(closed_list)}")
-		print(f"Total number of states to Optimal Path: {optimal_path_cost + 1}")
+		print(f"Total number of states to Sub-Optimal Path: {optimal_path_cost + 1}")
 		print(f"Optimal Path Cost: {optimal_path_cost}")
 		print(f"Time taken: {end_time - start_time}")
 		print("")
