@@ -36,6 +36,7 @@ def multinomial_naive_bayes(train: pd.DataFrame, test: str) -> str:
         for word in words:
             if word in pxc:
                 if row[0] == 0:
+                    # update frequency for appropriate class
                     pxc[word] = (pxc[word][0] + 1, pxc[word][1])
                 else:
                     pxc[word] = (pxc[word][0], pxc[word][1] + 1)
@@ -101,6 +102,7 @@ def multivariate_naive_bayes(train: pd.DataFrame, test: str) -> str:
         for word in set(words):
             if word in pxc:
                 if row[0] == 0:
+                    # update frequency for appropriate class
                     pxc[word] = (pxc[word][0] + 1, pxc[word][1])
                 else:
                     pxc[word] = (pxc[word][0], pxc[word][1] + 1)
