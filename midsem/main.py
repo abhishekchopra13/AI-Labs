@@ -2,13 +2,24 @@ import pandas as pd
 from models import multinomial_naive_bayes, multivariate_naive_bayes
 
 def main():
+
+    punc = '''!()-[]{};:'"\,<>./?@#$%^&*_~'''
+
     # Read and load training data
     train_data = pd.read_csv("dataset.txt", sep=":", header=None)
     train_data.iloc[:, 0] = train_data.iloc[:, 0] == "CV"
+    for i in range (0, train_data.shape[0]):
+        for ele in train_data.iloc[i, 1]:
+            if ele in punc:
+                train_data.iloc[i, 1] = train_data.iloc[i, 1].replace(ele, "")
 
     # Read the test data
     with open("test.txt") as f:
         test = f.readline()
+    
+    for ele in test:
+        if ele in punc:
+            test = test.replace(ele, "")
 
     print("Printing details for Vocaulary:\n")
     print("Word: (times in DL, times in CV)")
