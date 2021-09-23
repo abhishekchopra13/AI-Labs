@@ -55,19 +55,19 @@ def multinomial_naive_bayes(train: pd.DataFrame, test: str) -> str:
 
     # Testing on the parameters estimated
     words = test.split(" ")
-    prob_DL = log(pi[0])
-    prob_CV = log(pi[1])
+    score_DL = log(pi[0])
+    score_CV = log(pi[1])
 
     for word in words:
         if word not in pxc:
             continue
-        prob_CV += log(pxc[word][1])
-        prob_DL += log(pxc[word][0])
+        score_CV += log(pxc[word][1])
+        score_DL += log(pxc[word][0])
 
-    if (prob_CV >= prob_DL):
-        return "CV", pxc, prob_CV
+    if (score_CV >= score_DL):
+        return "CV", pxc, score_DL, score_CV
     else:
-        return "DL", pxc, prob_DL
+        return "DL", pxc, score_DL, score_CV
 
 def multivariate_naive_bayes(train: pd.DataFrame, test: str) -> str:
     n_rows = train.shape[0]
@@ -118,18 +118,18 @@ def multivariate_naive_bayes(train: pd.DataFrame, test: str) -> str:
 
     # Testing on the parameters estimated
     words = test.split(" ")
-    prob_DL = log(pi[0])
-    prob_CV = log(pi[1])
+    score_DL = log(pi[0])
+    score_CV = log(pi[1])
 
     for word in pxc:
         if word in words:
-            prob_CV += log(pxc[word][1])
-            prob_DL += log(pxc[word][0])
+            score_CV += log(pxc[word][1])
+            score_DL += log(pxc[word][0])
         else:
-            prob_CV += log(1 - pxc[word][1])
-            prob_DL += log(1 - pxc[word][0])
+            score_CV += log(1 - pxc[word][1])
+            score_DL += log(1 - pxc[word][0])
 
-    if (prob_CV >= prob_DL):
-        return "CV", pxc, prob_CV
+    if (score_CV >= score_DL):
+        return "CV", pxc, score_DL, score_CV
     else:
-        return "DL", pxc, prob_DL
+        return "DL", pxc, score_DL, score_CV

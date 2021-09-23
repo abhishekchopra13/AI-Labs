@@ -16,7 +16,7 @@ def main():
     # Read the test data
     with open("test.txt") as f:
         test = f.readline()
-    
+    # Cleaning the test data, by removing punctuations leads to better results
     for ele in test:
         if ele in punc:
             test = test.replace(ele, "")
@@ -24,11 +24,13 @@ def main():
     print("Printing details for Vocaulary:\n")
     print("Word: (times in DL, times in CV)")
     # get prediction, parameters and score for corresponding model
-    results_multinomial, pxc_multinomial, score_multinomial = multinomial_naive_bayes(train_data, test)
-    results_multivariate, pxc_multivariate, score_multivariate = multivariate_naive_bayes(train_data, test)
+    results_multinomial, pxc_multinomial, score_multinomial_DL, score_multinomial_CV = multinomial_naive_bayes(train_data, test)
+    results_multivariate, pxc_multivariate, score_multivariate_DL, score_multivariate_CV = multivariate_naive_bayes(train_data, test)
     print("")
-    print(f"(i) Prediction of Multivariate Naive Bayes: {results_multivariate} with confidence: {score_multivariate}")
-    print(f"(ii) Prediction of Multinomial Naive Bayes: {results_multinomial} with confidence: {score_multinomial}")
+    print(f"(i) Prediction of Multivariate Naive Bayes: {results_multivariate}")
+    print(f"Score DL: {score_multivariate_DL}, Score CV: {score_multivariate_CV}")
+    print(f"(ii) Prediction of Multinomial Naive Bayes: {results_multinomial}")
+    print(f"Score DL: {score_multinomial_DL}, Score CV: {score_multinomial_CV}")
     print("")
     print("Value of parameters for Multinomial:")
     print("Word: (parameter for DL, for CV)\n")
