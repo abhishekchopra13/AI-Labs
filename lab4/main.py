@@ -148,13 +148,12 @@ def get_wrong_prediction(prediction, actual, dataset):
 
 _, root_gini, prediction_gini, actual_gini = get_report(traindata=data, testdata=testdata)
 wrong_data = get_wrong_prediction(prediction_gini, actual_gini, testdata)
-
-len(wrong_data)
+print(len(wrong_data))
 
 _, root_entropy, prediction_entropy, actual_entropy = get_report(traindata=data, testdata=wrong_data, func=entropy)
 wrong_data_en = get_wrong_prediction(prediction_entropy, actual_entropy, wrong_data)
-len(wrong_data_en)
+print(len(wrong_data_en))
 
 _, root_mis, prediction_mis, actual_mis = get_report(traindata=data, testdata=wrong_data, func=misclassifcation_error)
 wrong_data_mis = get_wrong_prediction(prediction_entropy, actual_entropy, wrong_data)
-len(wrong_data_mis)
+print(len(wrong_data_mis))
