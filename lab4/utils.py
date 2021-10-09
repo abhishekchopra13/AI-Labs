@@ -1,16 +1,8 @@
-import numpy as np
-import matplotlib.pyplot as plt
-import pandas as pd
 import string
 import nltk
-from sklearn.model_selection import KFold
-from sklearn.metrics import classification_report
-from sklearn.metrics import f1_score, precision_score, recall_score, accuracy_score, confusion_matrix
-from statistics import mean
 from collections import Counter
 from nltk import ngrams
-from nltk.corpus import stopwords
-from nltk.tokenize import word_tokenize, sent_tokenize
+from nltk.tokenize import sent_tokenize
 from copy import deepcopy
 import operator
 from math import log2
