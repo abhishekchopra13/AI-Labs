@@ -1,0 +1,162 @@
+Labels for prediction: ['DESC', 'ENTY', 'NUM', 'LOC', 'ABBR', 'HUM']
+Feature ablation report(avgLength, unigrams, bigrams, trigrams, postags): 
+
+
+Training DecisionTree with No Unigrams; No Bigrams; No Trigrams; No POS_Tags; No AvgLength; 
+---------------------------------------------------------------
+Accuracy Report: {'DESC': 1.0, 'ENTY': 0.0, 'NUM': 0.0, 'LOC': 0.0, 'ABBR': 0.0, 'HUM': 0.0}
+
+
+Training DecisionTree with Unigrams; No Bigrams; No Trigrams; No POS_Tags; No AvgLength; 
+---------------------------------------------------------------
+Accuracy Report: {'DESC': 0.09420289855072464, 'ENTY': 0.9893617021276596, 'NUM': 0.6637168141592921, 'LOC': 0.5679012345679012, 'ABBR': 0.1111111111111111, 'HUM': 0.8}
+
+
+Training DecisionTree with No Unigrams; Bigrams; No Trigrams; No POS_Tags; No AvgLength; 
+---------------------------------------------------------------
+Accuracy Report: {'DESC': 0.32608695652173914, 'ENTY': 0.6170212765957447, 'NUM': 0.6371681415929203, 'LOC': 0.5061728395061729, 'ABBR': 0.6666666666666666, 'HUM': 0.6461538461538462}
+
+
+Training DecisionTree with Unigrams; Bigrams; No Trigrams; No POS_Tags; No AvgLength; 
+---------------------------------------------------------------
+Accuracy Report: {'DESC': 0.9565217391304348, 'ENTY': 0.6914893617021277, 'NUM': 0.7699115044247787, 'LOC': 0.6296296296296297, 'ABBR': 0.5555555555555556, 'HUM': 0.8461538461538461}
+
+
+Training DecisionTree with No Unigrams; No Bigrams; Trigrams; No POS_Tags; No AvgLength; 
+---------------------------------------------------------------
+Accuracy Report: {'DESC': 0.9855072463768116, 'ENTY': 0.2127659574468085, 'NUM': 0.2920353982300885, 'LOC': 0.345679012345679, 'ABBR': 0.4444444444444444, 'HUM': 0.4461538461538462}
+
+
+Training DecisionTree with Unigrams; No Bigrams; Trigrams; No POS_Tags; No AvgLength; 
+---------------------------------------------------------------
+Accuracy Report: {'DESC': 0.14492753623188406, 'ENTY': 0.8936170212765957, 'NUM': 0.7345132743362832, 'LOC': 0.6419753086419753, 'ABBR': 0.1111111111111111, 'HUM': 0.7692307692307693}
+
+
+Training DecisionTree with No Unigrams; Bigrams; Trigrams; No POS_Tags; No AvgLength; 
+---------------------------------------------------------------
+Accuracy Report: {'DESC': 0.32608695652173914, 'ENTY': 0.5851063829787234, 'NUM': 0.6371681415929203, 'LOC': 0.5679012345679012, 'ABBR': 0.7777777777777778, 'HUM': 0.6461538461538462}
+
+
+Training DecisionTree with Unigrams; Bigrams; Trigrams; No POS_Tags; No AvgLength; 
+---------------------------------------------------------------
+Accuracy Report: {'DESC': 0.9202898550724637, 'ENTY': 0.6276595744680851, 'NUM': 0.7699115044247787, 'LOC': 0.654320987654321, 'ABBR': 0.6666666666666666, 'HUM': 0.8307692307692308}
+
+
+Training DecisionTree with No Unigrams; No Bigrams; No Trigrams; POS_Tags; No AvgLength; 
+---------------------------------------------------------------
+Accuracy Report: {'DESC': 0.08695652173913043, 'ENTY': 0.9787234042553191, 'NUM': 0.6371681415929203, 'LOC': 0.4074074074074074, 'ABBR': 0.1111111111111111, 'HUM': 0.8}
+
+
+Training DecisionTree with Unigrams; No Bigrams; No Trigrams; POS_Tags; No AvgLength; 
+---------------------------------------------------------------
+Accuracy Report: {'DESC': 0.10869565217391304, 'ENTY': 0.7978723404255319, 'NUM': 0.8230088495575221, 'LOC': 0.6296296296296297, 'ABBR': 0.6666666666666666, 'HUM': 0.8923076923076924}
+
+
+Training DecisionTree with No Unigrams; Bigrams; No Trigrams; POS_Tags; No AvgLength; 
+---------------------------------------------------------------
+Accuracy Report: {'DESC': 0.08695652173913043, 'ENTY': 0.8191489361702128, 'NUM': 0.6637168141592921, 'LOC': 0.6666666666666666, 'ABBR': 0.6666666666666666, 'HUM': 0.7538461538461538}
+
+
+Training DecisionTree with Unigrams; Bigrams; No Trigrams; POS_Tags; No AvgLength; 
+---------------------------------------------------------------
+Accuracy Report: {'DESC': 0.9637681159420289, 'ENTY': 0.7340425531914894, 'NUM': 0.8230088495575221, 'LOC': 0.6790123456790124, 'ABBR': 0.6666666666666666, 'HUM': 0.8615384615384616}
+
+
+Training DecisionTree with No Unigrams; No Bigrams; Trigrams; POS_Tags; No AvgLength; 
+---------------------------------------------------------------
+Accuracy Report: {'DESC': 0.13768115942028986, 'ENTY': 0.925531914893617, 'NUM': 0.6902654867256637, 'LOC': 0.6666666666666666, 'ABBR': 0.1111111111111111, 'HUM': 0.8307692307692308}
+
+
+Training DecisionTree with Unigrams; No Bigrams; Trigrams; POS_Tags; No AvgLength; 
+---------------------------------------------------------------
+Accuracy Report: {'DESC': 0.9855072463768116, 'ENTY': 0.425531914893617, 'NUM': 0.7876106194690266, 'LOC': 0.654320987654321, 'ABBR': 0.6666666666666666, 'HUM': 0.8461538461538461}
+
+
+Training DecisionTree with No Unigrams; Bigrams; Trigrams; POS_Tags; No AvgLength; 
+---------------------------------------------------------------
+Accuracy Report: {'DESC': 0.9710144927536232, 'ENTY': 0.6170212765957447, 'NUM': 0.7345132743362832, 'LOC': 0.6296296296296297, 'ABBR': 0.6666666666666666, 'HUM': 0.7692307692307693}
+
+
+Training DecisionTree with Unigrams; Bigrams; Trigrams; POS_Tags; No AvgLength; 
+---------------------------------------------------------------
+Accuracy Report: {'DESC': 0.9637681159420289, 'ENTY': 0.7340425531914894, 'NUM': 0.8141592920353983, 'LOC': 0.7037037037037037, 'ABBR': 0.6666666666666666, 'HUM': 0.8307692307692308}
+
+
+Training DecisionTree with No Unigrams; No Bigrams; No Trigrams; No POS_Tags; AvgLength; 
+---------------------------------------------------------------
+Accuracy Report: {'DESC': 0.014492753623188406, 'ENTY': 0.7021276595744681, 'NUM': 0.0, 'LOC': 0.0, 'ABBR': 0.0, 'HUM': 0.0}
+
+
+Training DecisionTree with Unigrams; No Bigrams; No Trigrams; No POS_Tags; AvgLength; 
+---------------------------------------------------------------
+Accuracy Report: {'DESC': 0.09420289855072464, 'ENTY': 0.9893617021276596, 'NUM': 0.6902654867256637, 'LOC': 0.5555555555555556, 'ABBR': 0.1111111111111111, 'HUM': 0.8}
+
+
+Training DecisionTree with No Unigrams; Bigrams; No Trigrams; No POS_Tags; AvgLength; 
+---------------------------------------------------------------
+Accuracy Report: {'DESC': 0.32608695652173914, 'ENTY': 0.6170212765957447, 'NUM': 0.6371681415929203, 'LOC': 0.5555555555555556, 'ABBR': 0.6666666666666666, 'HUM': 0.6307692307692307}
+
+
+Training DecisionTree with Unigrams; Bigrams; No Trigrams; No POS_Tags; AvgLength; 
+---------------------------------------------------------------
+Accuracy Report: {'DESC': 0.9565217391304348, 'ENTY': 0.6914893617021277, 'NUM': 0.7699115044247787, 'LOC': 0.6296296296296297, 'ABBR': 0.5555555555555556, 'HUM': 0.8461538461538461}
+
+
+Training DecisionTree with No Unigrams; No Bigrams; Trigrams; No POS_Tags; AvgLength; 
+---------------------------------------------------------------
+Accuracy Report: {'DESC': 0.9855072463768116, 'ENTY': 0.2127659574468085, 'NUM': 0.2920353982300885, 'LOC': 0.345679012345679, 'ABBR': 0.4444444444444444, 'HUM': 0.4461538461538462}
+
+
+Training DecisionTree with Unigrams; No Bigrams; Trigrams; No POS_Tags; AvgLength; 
+---------------------------------------------------------------
+Accuracy Report: {'DESC': 0.14492753623188406, 'ENTY': 0.8191489361702128, 'NUM': 0.672566371681416, 'LOC': 0.654320987654321, 'ABBR': 0.1111111111111111, 'HUM': 0.7846153846153846}
+
+
+Training DecisionTree with No Unigrams; Bigrams; Trigrams; No POS_Tags; AvgLength; 
+---------------------------------------------------------------
+Accuracy Report: {'DESC': 0.32608695652173914, 'ENTY': 0.6063829787234043, 'NUM': 0.6371681415929203, 'LOC': 0.5802469135802469, 'ABBR': 0.7777777777777778, 'HUM': 0.6461538461538462}
+
+
+Training DecisionTree with Unigrams; Bigrams; Trigrams; No POS_Tags; AvgLength; 
+---------------------------------------------------------------
+Accuracy Report: {'DESC': 0.9202898550724637, 'ENTY': 0.6276595744680851, 'NUM': 0.7787610619469026, 'LOC': 0.654320987654321, 'ABBR': 0.6666666666666666, 'HUM': 0.8307692307692308}
+
+
+Training DecisionTree with No Unigrams; No Bigrams; No Trigrams; POS_Tags; AvgLength; 
+---------------------------------------------------------------
+Accuracy Report: {'DESC': 0.08695652173913043, 'ENTY': 0.9787234042553191, 'NUM': 0.6371681415929203, 'LOC': 0.4074074074074074, 'ABBR': 0.1111111111111111, 'HUM': 0.8}
+
+
+Training DecisionTree with Unigrams; No Bigrams; No Trigrams; POS_Tags; AvgLength; 
+---------------------------------------------------------------
+Accuracy Report: {'DESC': 0.10869565217391304, 'ENTY': 0.7872340425531915, 'NUM': 0.8141592920353983, 'LOC': 0.6666666666666666, 'ABBR': 0.6666666666666666, 'HUM': 0.8615384615384616}
+
+
+Training DecisionTree with No Unigrams; Bigrams; No Trigrams; POS_Tags; AvgLength; 
+---------------------------------------------------------------
+Accuracy Report: {'DESC': 0.09420289855072464, 'ENTY': 0.8829787234042553, 'NUM': 0.6637168141592921, 'LOC': 0.654320987654321, 'ABBR': 0.6666666666666666, 'HUM': 0.7538461538461538}
+
+
+Training DecisionTree with Unigrams; Bigrams; No Trigrams; POS_Tags; AvgLength; 
+---------------------------------------------------------------
+Accuracy Report: {'DESC': 0.9637681159420289, 'ENTY': 0.7340425531914894, 'NUM': 0.8230088495575221, 'LOC': 0.6790123456790124, 'ABBR': 0.6666666666666666, 'HUM': 0.8615384615384616}
+
+
+Training DecisionTree with No Unigrams; No Bigrams; Trigrams; POS_Tags; AvgLength; 
+---------------------------------------------------------------
+Accuracy Report: {'DESC': 0.13768115942028986, 'ENTY': 0.925531914893617, 'NUM': 0.6902654867256637, 'LOC': 0.6666666666666666, 'ABBR': 0.1111111111111111, 'HUM': 0.8307692307692308}
+
+
+Training DecisionTree with Unigrams; No Bigrams; Trigrams; POS_Tags; AvgLength; 
+---------------------------------------------------------------
+Accuracy Report: {'DESC': 0.9855072463768116, 'ENTY': 0.425531914893617, 'NUM': 0.7876106194690266, 'LOC': 0.654320987654321, 'ABBR': 0.6666666666666666, 'HUM': 0.8461538461538461}
+
+
+Training DecisionTree with No Unigrams; Bigrams; Trigrams; POS_Tags; AvgLength; 
+---------------------------------------------------------------
+Accuracy Report: {'DESC': 0.9710144927536232, 'ENTY': 0.6170212765957447, 'NUM': 0.7345132743362832, 'LOC': 0.6296296296296297, 'ABBR': 0.6666666666666666, 'HUM': 0.7692307692307693}
+
+
+Training DecisionTree with Unigrams; Bigrams; Trigrams; POS_Tags; AvgLength; 
+---------------------------------------------------------------
+Accuracy Report: {'DESC': 0.9637681159420289, 'ENTY': 0.7340425531914894, 'NUM': 0.8141592920353983, 'LOC': 0.7037037037037037, 'ABBR': 0.6666666666666666, 'HUM': 0.8307692307692308}

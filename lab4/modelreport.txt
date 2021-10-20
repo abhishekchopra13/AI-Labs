@@ -1,0 +1,46 @@
+Labels for prediction: ['ABBR', 'DESC', 'NUM', 'ENTY', 'LOC', 'HUM']
+
+
+Training model with entropy information gain...
+'entropy' Model Report
+----------------------------
+Precision: 0.8165712979504854
+Recall: 0.7620693051830414
+F-Score: 0.7806341472102495
+Confusion Matrix:
+ [[  6   3   0   0   0   0]
+ [  1 133   0   4   0   0]
+ [  0  14  91   6   2   0]
+ [  0  30   0  54   5   5]
+ [  1  14   1   6  58   1]
+ [  0   2   0   7   1  55]]
+
+
+Training model with gini information gain...
+'gini' Model Report
+----------------------------
+Precision: 0.8317008708851444
+Recall: 0.785518260384753
+F-Score: 0.802431531675766
+Confusion Matrix:
+ [[  6   3   0   0   0   0]
+ [  1 133   0   4   0   0]
+ [  0  13  92   6   2   0]
+ [  0  18   0  69   4   3]
+ [  1   5   0  17  57   1]
+ [  0   1   0   8   2  54]]
+
+
+Training model with miserror information gain...
+'miserror' Model Report
+----------------------------
+Precision: 0.8501638034606601
+Recall: 0.7695624126429937
+F-Score: 0.7990780553903548
+Confusion Matrix:
+ [[  6   3   0   0   0   0]
+ [  0 114   0  23   1   0]
+ [  0  14  90   6   3   0]
+ [  0  16   2  72   3   1]
+ [  0   5   1  14  58   3]
+ [  0   0   0   8   2  55]]

@@ -1,159 +1,165 @@
-import nltk
+from utils import processInput, Question, getMean
+from DecisionTree import DecisionTree
+from collections import Counter
 from sklearn.model_selection import KFold
 from sklearn.metrics import f1_score, precision_score, recall_score, accuracy_score, confusion_matrix
-from statistics import mean
-from nltk.corpus import stopwords
-from utils import build_data, frequent_grams, Feature, get_data_in_index, train, get_actual_labels, classify, gini, \
-    entropy, misclassifcation_error
 
-# Download required modules
-nltk.download('stopwords')
-nltk.download('punkt')
-nltk.download('averaged_perceptron_tagger')
+dataset, avgLength, unigrams, bigrams, trigrams, postags = processInput("traindata.txt")
 
-# Get the set of English stop words
-stop_words = set(stopwords.words('english'))
+labels = [row[0] for row in dataset]
+labels = list(set(labels))
+print("Labels for prediction:", labels)
 
-data, uni, bi, tri, pos = build_data('./traindata.txt', stop_words)
+# Extract top ngrams
 
-unigram_counts = frequent_grams(uni, 500)
-bigram_counts = frequent_grams(bi, 300)
-trigram_counts = frequent_grams(tri, 200)
-pos_counts = frequent_grams(pos, 500)
-avgLength = mean([row[2] for row in data])
-print(avgLength)
-
-Features = []
-
-for y in unigram_counts:
-    Features.append(Feature(3, y[0]))
-
-for y in bigram_counts:
-    Features.append(Feature(4, y[0]))
-
-for y in trigram_counts:
-    Features.append(Feature(5, y[0]))
-
-for y in pos_counts:
-    Features.append(Feature(6, y[0]))
-
-Features.append(Feature(2, avgLength))
-
-print(len(Features))
-# print(Features[1500])
+# 500 top 1-gram
+unigram_count = Counter(unigrams).most_common(500)
+# 300 top 2-gram
+bigram_count = Counter(bigrams).most_common(300)
+# 200 top 3-gram
+trigram_count = Counter(trigrams).most_common(200)
+# 500 top POS_Tags
+tags_count = Counter(postags).most_common(500)
 
 
-kfold = KFold(n_splits=10, shuffle=True, random_state=1)
-precision = []
-recall = []
-f_score = []
-i = 0
+def prepareQuestions(uniFlag=True, biFlag=True, triFlag=True, posFlag=True, lenFlag=True):
+    questions = []
 
-for trainInd, testInd in kfold.split(data):
-    train_data = get_data_in_index(data, trainInd)
-    test_data = get_data_in_index(data, testInd)
+    if lenFlag:
+        questions.append(Question(2, avgLength))
 
-    root = train(train_data, Features, gini)
+    if uniFlag:
+        for gram in unigram_count:
+            questions.append(Question(3, gram[0]))
 
-    prediction = classify(root, test_data)
+    if biFlag:
+        for gram in bigram_count:
+            questions.append(Question(4, gram[0]))
 
-    actual = get_actual_labels(test_data)
-    predicted = prediction
+    if triFlag:
+        for gram in trigram_count:
+            questions.append(Question(5, gram[0]))
 
-    #     print(classification_report(actual, predicted))
-    precision.append(precision_score(actual, predicted, average='macro'))
-    recall.append(recall_score(actual, predicted, average='macro'))
-    f_score.append(f1_score(actual, predicted, average='macro'))
+    if posFlag:
+        for gram in tags_count:
+            questions.append(Question(6, gram[0]))
 
-    print("Training ...")
-
-print("Precision Score: " + str(mean(precision)))
-print("Recall Score: " + str(mean(recall)))
-print("F-Score: " + str(mean(f_score)))
+    return questions
 
 
-# ## Part 2
-# - All
-# - Unigram, Bigram, Trigram, POS
-# - Unigram, Bigram, Trigram
-
-def get_report(traindata, testdata, uni_flag=True, bi_flag=True, tri_flag=True, pos_flag=True, len_flag=True,
-               func=gini):
-    all_features = []
-
-    if uni_flag:
-        for y in unigram_counts:
-            all_features.append(Feature(3, y[0]))
-
-    if bi_flag:
-        for y in bigram_counts:
-            all_features.append(Feature(4, y[0]))
-
-    if tri_flag:
-        for y in trigram_counts:
-            all_features.append(Feature(5, y[0]))
-
-    if pos_flag:
-        for y in pos_counts:
-            all_features.append(Feature(6, y[0]))
-
-    if len_flag:
-        all_features.append(Feature(2, avgLength))
-
-    print("No of Features: " + str(len(all_features)))
-    print("Training ...")
-    root = train(traindata, all_features, func)
-    print("Predicting ...")
-    prediction = classify(root, testdata)
-    actual = get_actual_labels(testdata)
-    print("Prediction done ...")
-    matrix = confusion_matrix(actual, prediction)
-    acc = matrix.diagonal() / matrix.sum(axis=1)
-    accuracy_report = dict(zip(classes, acc))
-
-    return accuracy_report, root, prediction, actual
+allQuestions = prepareQuestions()
 
 
-classes = ['ABBR', 'DESC', 'ENTY', 'HUM', 'LOC', 'NUM']
-testdata = build_data('./testdata.txt', stop_words)[0]
-len(testdata)
+def getPrediction(classifier, test_data):
+    predicted_values = []
+    for row in test_data:
+        prediction = classifier.classify(row)
+        predicted_values.append(prediction)
 
-print(get_report(traindata=data, testdata=testdata)[0])
-
-print(get_report(traindata=data, testdata=testdata, func=entropy)[0])
-
-print(get_report(traindata=data, testdata=testdata, func=misclassifcation_error)[0])
-
-print(get_report(traindata=data, testdata=testdata, len_flag=False)[0])
-
-print(get_report(traindata=data, testdata=testdata, len_flag=False, func=entropy)[0])
-
-print(get_report(traindata=data, testdata=testdata, len_flag=False, func=misclassifcation_error)[0])
-
-print(get_report(traindata=data, testdata=testdata, len_flag=False, pos_flag=False)[0])
-
-print(get_report(traindata=data, testdata=testdata, len_flag=False, pos_flag=False, func=entropy)[0])
-
-print(get_report(traindata=data, testdata=testdata, len_flag=False, pos_flag=False, func=misclassifcation_error)[0])
+    return predicted_values
 
 
-# Error Analysis
-def get_wrong_prediction(prediction, actual, dataset):
-    data_list = []
-    for i in range(len(prediction)):
-        if prediction[i] != actual[i]:
-            data_list.append(dataset[i])
-    return data_list
+def get10FoldCVResult():
+    print("Preparing 10-fold cross-validation results...")
+    kf = KFold(10, shuffle=True, random_state=1)
+
+    precision = []
+    f_score = []
+    recall = []
+    for trainIds, testIds in kf.split(dataset):
+        train_data = []
+        test_data = []
+        for x in trainIds:
+            train_data.append(dataset[x])
+
+        print("Training...")
+        dTreeCf = DecisionTree(train_data, allQuestions, "gini")
+
+        actual_values = []
+
+        for x in testIds:
+            test_data.append(dataset[x])
+
+            actual = dataset[x][0]
+            actual_values.append(actual)
+
+        predicted_values = getPrediction(dTreeCf, test_data)
+
+        precision.append(precision_score(actual_values, predicted_values, average='macro'))
+        recall.append(recall_score(actual_values, predicted_values, average='macro'))
+        f_score.append(f1_score(actual_values, predicted_values, average='macro'))
+
+    print("Avg. Precision:", getMean(precision))
+    print("Avg. Recall:", getMean(recall))
+    print("Avg. F-Score:", getMean(f_score))
 
 
-_, root_gini, prediction_gini, actual_gini = get_report(traindata=data, testdata=testdata)
-wrong_data = get_wrong_prediction(prediction_gini, actual_gini, testdata)
-print(len(wrong_data))
+get10FoldCVResult()
 
-_, root_entropy, prediction_entropy, actual_entropy = get_report(traindata=data, testdata=wrong_data, func=entropy)
-wrong_data_en = get_wrong_prediction(prediction_entropy, actual_entropy, wrong_data)
-print(len(wrong_data_en))
+testData, tavgLen, tUnigrams, tBigrams, tTrigrams, tPostags = processInput("testdata.txt")
 
-_, root_mis, prediction_mis, actual_mis = get_report(traindata=data, testdata=wrong_data, func=misclassifcation_error)
-wrong_data_mis = get_wrong_prediction(prediction_entropy, actual_entropy, wrong_data)
-print(len(wrong_data_mis))
+
+def featureAblationReport():
+    print("Feature ablation report(avgLength, unigrams, bigrams, trigrams, postags): ")
+    features = ["Unigrams", "Bigrams", "Trigrams", "POS_Tags", "AvgLength"]
+
+    for case in range(1 << 5):
+        params = [True] * 5
+        for t in range(5):
+            if (case & (1 << t)):
+                continue
+            else:
+                params[t] = False
+
+        # prepareQuestions with True params only.
+        print("\n\nTraining DecisionTree with ", end="")
+        for t in range(5):
+            if params[t]:
+                print(features[t], end="; ")
+            else:
+                print("No", features[t], end="; ")
+        print("\n---------------------------------------------------------------")
+
+        dTreeCf = DecisionTree(dataset,
+                               prepareQuestions(params[0], params[1], params[2], params[3], params[4]),
+                               "gini")
+
+        predicted_values = getPrediction(dTreeCf, testData)
+        actual_values = [row[0] for row in testData]
+
+        matrix = confusion_matrix(actual_values, predicted_values, labels=labels)
+        acc = matrix.diagonal() / matrix.sum(axis=1)
+
+        accuracy_report = dict(zip(labels, acc))
+
+        print("Accuracy Report:", accuracy_report)
+
+
+featureAblationReport()
+
+criteria = ['entropy', 'gini', 'miserror']
+
+
+def getModelReport(criteria):
+    print(f"\n\nTraining model with {criteria} information gain...")
+    dTreeCf = DecisionTree(dataset, allQuestions, criteria)
+    predicted_values = getPrediction(dTreeCf, testData)
+    actual_values = [row[0] for row in testData]
+
+    matrix = confusion_matrix(actual_values, predicted_values, labels=labels)
+
+    precision = precision_score(actual_values, predicted_values, average='macro')
+    recall = recall_score(actual_values, predicted_values, average='macro')
+    f_score = f1_score(actual_values, predicted_values, average='macro')
+
+    return precision, recall, f_score, matrix
+
+
+for c in criteria:
+    precision, recall, f_score, matrix = getModelReport(c)
+    print(f"'{c}' Model Report")
+    print("----------------------------")
+    print("Precision:", precision)
+    print("Recall:", recall)
+    print("F-Score:", f_score)
+    print("Confusion Matrix:\n", matrix)
