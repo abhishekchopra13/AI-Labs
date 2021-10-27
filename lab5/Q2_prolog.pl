@@ -2,9 +2,11 @@ himalayan_club(a).
 himalayan_club(b).
 himalayan_club(c).
 
+% If notmc and notsk, then fail
 himalayan_club(X):-notmc(X),notsk(X),!, fail.
 himalayan_club(_).
 
+% If P likes Q, then fail
 dislike(P,Q):- like(P,Q),!,fail.
 dislike(_,__).
 
