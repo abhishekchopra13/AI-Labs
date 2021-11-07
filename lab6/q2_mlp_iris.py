@@ -33,7 +33,7 @@ def evaluate_metrics(test_images, test_labels):
 
 
 def print_metrics(test_acc, precision, recall, f1):
-    digits = [class_names[flower] for flower in range(10)]
+    digits = [class_names[flower] for flower in range(3)]
     print(f"Accuracy of the model: {test_acc}")
     print(tabulate(zip(digits, precision, recall, f1),
                    headers=['Class (Flower)', 'Precision', 'Recall', 'F1'],
