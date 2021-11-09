@@ -71,11 +71,11 @@ if __name__ == '__main__':
         accuracy.append(test_accuracy)
 
     # Plot accuracy vs number of neurons graph
-    plt.title("Accuracy vs. Number of Neurons")
+    plt.title("Iris Accuracy vs. Number of Neurons")
     plt.xlabel("Number of Neurons")
     plt.ylabel("Accuracy")
     plt.plot(neurons, accuracy, color='red', marker='x')
     for i in range(len(accuracy)):
-        plt.annotate(f'({neurons[i]}, {accuracy[i]})', (neurons[i], accuracy[i]))
+        plt.annotate(f'({neurons[i]}, {round(accuracy[i], 2)})', (neurons[i], accuracy[i]))
     plt.savefig('iris_acc_vs_neurons.png')
     plt.show()
