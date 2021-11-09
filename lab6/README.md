@@ -19,14 +19,14 @@ Team Members:
 | Amish Mittal      | 1801CS07    |
 | Shashwat Mahajan  | 1801CS46    |
 
-## Question 1: XOR Perceptron
+## Question 1: XOR Neural Network
 
 ### Running the Code
-```python q1_xor_perceptron.py```
+```python q1_xor_nn.py```
 
 ### Sample Output
 ```
-Finding A XOR B using perceptron.
+Finding A XOR B using neural network.
 CASE 1: A = 0, B = 0
 A XOR B = 0
 
@@ -46,7 +46,7 @@ A XOR B = 0
 ```python q2_mlp_iris.py```
 
 ### Error Analysis for 512 neurons
-Accuracy of the model: 0.9666666666666667
+**Accuracy of the model: 0.9666666666666667**
 
 | Class (Flower)   |   Precision |   Recall |       F1 |
 |------------------|-------------|----------|----------|
@@ -63,7 +63,7 @@ Accuracy of the model: 0.9666666666666667
 ```python q2_mlp_mnist.py```
 
 ### Error Analysis for 512 neurons
-Accuracy of the model: 0.9805
+**Accuracy of the model: 0.9805**
 
 |   Class (Digit) |   Precision |   Recall |       F1 |
 |-----------------|-------------|----------|----------|
