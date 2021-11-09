@@ -3,7 +3,7 @@
 ### Indian Institute of Technology Patna
 ### 2021-22
 
-# Assignment 5
+# Assignment 6
 
 ## Team Details:
 
