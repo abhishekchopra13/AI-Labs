@@ -43,10 +43,11 @@ if __name__ == '__main__':
 	print('Using Hill Climbing Algorithm\n')
 	# print('2. Simulated Annealing ')
 	# algo_type = int(input())
-	print('Available Hueristics')
 	print('1. h1(n) = number of tiles displaced from their destined position.')
 	print('2. h2(n) = sum of Manhattan distance of each tile from the goal')
-	print('3. h(n) = 0 Zero heuristic')
+	print('3. h3(n) = h1(n) + h2(n) - Not admissible')
+	print('4. h(n) = 0 Zero heuristic')
+	
 	print('Enter Hueristic type:')
 	hueristic_type = int(input())
 
@@ -59,6 +60,12 @@ if __name__ == '__main__':
 
 	if optimal_path_cost != -1:
 		print("Voila ! Found a solution to the puzzle ! Gretings from MnMnM !")
+		if hueristic_type == 1:
+			print("Heuristic: Number of displaced tiles")
+		elif hueristic_type == 2:
+			print("Heuristic: Total Manhattan distance")
+		else:
+			print("Zero heuristic")
 		print("Start State:")
 		printMat(start_state.mat)
 		print("Goal State:")
@@ -71,6 +78,12 @@ if __name__ == '__main__':
 		printOptimalPath(parent_list, mat_to_string(final_state.mat), mat_to_string(start_state.mat))
 	else:
 		print("Boo ! Unable to find a solution !")
+		if hueristic_type == 1:
+			print("Heuristic: Number of displaced tiles")
+		elif hueristic_type == 2:
+			print("Heuristic: Total Manhattan distance")
+		else:
+			print("Zero heuristic")
 		print("Start State:")
 		printMat(start_state.mat)
 		print("Goal State:")

@@ -12,6 +12,8 @@ def h_n(current_matrix, goal, heuristic_used: int):
     elif heuristic_used == 2:
         return heuristics.manhattan_heuristic_with_blank_tile(current_matrix, goal)
     elif heuristic_used == 3:
+        return heuristics.sum_heuristic(current_matrix, goal)
+    elif heuristic_used == 4:
         return heuristics.zero_heuristic()
 
 def find_neighbours(puzzle_state: Puzzle_State):
