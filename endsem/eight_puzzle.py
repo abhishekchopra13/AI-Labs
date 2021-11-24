@@ -51,11 +51,14 @@ if __name__ == '__main__':
 	print('Enter Hueristic type:')
 	hueristic_type = int(input())
 
+	print("Consider blank tile as regular tile?")
+	blank_as_tile = int(input())
+
 	start_state = Matrix(np.array(readInput(sys.argv[1])))
 	final_state = Matrix(np.array(readInput(sys.argv[2])))
 
 	start_time = time.time()
-	closed_list, parent_list, optimal_path_cost, string_to_matrix_mapping = hill_climbing(start_state, final_state, hueristic_type)
+	closed_list, parent_list, optimal_path_cost, string_to_matrix_mapping = hill_climbing(start_state, final_state, hueristic_type, blank_as_tile)
 	end_time = time.time()
 
 	if optimal_path_cost != -1:

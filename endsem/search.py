@@ -6,13 +6,13 @@ import math
 import random
 import numpy as np
 
-def h_n(current_matrix, goal, heuristic_used: int):
+def h_n(current_matrix, goal, heuristic_used: int, blank_as_tile: bool):
     if heuristic_used == 1:
-        return heuristics.displaced_tiles_heuristic_with_blank_tile(current_matrix, goal)
+        return heuristics.displaced_tiles_heuristic_with_blank_tile(current_matrix, goal, blank_as_tile)
     elif heuristic_used == 2:
-        return heuristics.manhattan_heuristic_with_blank_tile(current_matrix, goal)
+        return heuristics.manhattan_heuristic_with_blank_tile(current_matrix, goal, blank_as_tile)
     elif heuristic_used == 3:
-        return heuristics.sum_heuristic(current_matrix, goal)
+        return heuristics.sum_heuristic(current_matrix, goal, blank_as_tile)
     elif heuristic_used == 4:
         return heuristics.zero_heuristic()
 
@@ -26,8 +26,8 @@ def find_neighbours(puzzle_state: Puzzle_State):
     return neighbours
 
 
-def hill_climbing(initial_matrix: Matrix, goal: Matrix, heuristic_used: int):
-    puzzle_start = Puzzle_State_HC(initial_matrix, 0, h_n(initial_matrix, goal, heuristic_used))
+def hill_climbing(initial_matrix: Matrix, goal: Matrix, heuristic_used: int, blank_as_tile: bool):
+    puzzle_start = Puzzle_State_HC(initial_matrix, 0, h_n(initial_matrix, goal, heuristic_used, blank_as_tile))
     open_list = PriorityQueue()
     open_list.put(puzzle_start)
     open_list_len = 1
@@ -60,11 +60,11 @@ def hill_climbing(initial_matrix: Matrix, goal: Matrix, heuristic_used: int):
             if neighbour_string not in closed_list:
                 parent_list[neighbour_string] = puzzle_configuration_string
                 closed_list[neighbour_string] = puzzle_state.g_n + 1
-                neighbour_queue.put(Puzzle_State_HC(neighbour, puzzle_state.g_n + 1, h_n(neighbour, goal, heuristic_used)))
+                neighbour_queue.put(Puzzle_State_HC(neighbour, puzzle_state.g_n + 1, h_n(neighbour, goal, heuristic_used, blank_as_tile)))
             elif puzzle_state.g_n + 1 < closed_list[neighbour_string]:
                 parent_list[neighbour_string] = puzzle_configuration_string
                 closed_list[neighbour_string] = puzzle_state.g_n + 1
-                neighbour_queue.put(Puzzle_State_HC(neighbour, puzzle_state.g_n + 1, h_n(neighbour, goal, heuristic_used)))
+                neighbour_queue.put(Puzzle_State_HC(neighbour, puzzle_state.g_n + 1, h_n(neighbour, goal, heuristic_used, blank_as_tile)))
             
             if neighbour_queue.empty():
                 break
